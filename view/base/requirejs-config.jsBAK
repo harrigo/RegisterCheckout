@@ -1,7 +1,0 @@
-var config = {
-    map: {
-        '*': {
-         "Magento_Checkout/js/model/step-navigator": "Harrigo_RegisterCheckout/js/model/step-navigator"
-        }
-    }
-};
