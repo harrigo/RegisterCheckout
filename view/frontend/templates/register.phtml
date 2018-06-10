@@ -1,26 +1,14 @@
-<?php
-/**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// @codingStandardsIgnoreFile
-
-?>
-<?php
-/**
- * Create account form template
- *
- * @var $block \Magento\Customer\Block\Form\Register
- */
-?>
 <?php echo $block->getChildHtml('form_fields_before')?>
 <?php /* Extensions placeholder */ ?>
 <?php echo $block->getChildHtml('customer.form.register.extra')?>
+<?php $om = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+<?php $key_form = $om->get('Magento\Framework\Data\Form\FormKey'); ?>
+
 <form class="form create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>?checkout=yes" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <fieldset class="fieldset create info">
         <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend><br>
 		<input type="hidden" name="checkout" value="true">
+		<input type="hidden" name="form_key" value="<?php echo $key_form->getFormKey(); ?>">
         <input type="hidden" name="success_url" value="<?php /* @escapeNotVerified */ echo $block->getSuccessUrl() ?>">
         <input type="hidden" name="error_url" value="<?php /* @escapeNotVerified */ echo $block->getErrorUrl() ?>">
         <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
@@ -147,14 +135,6 @@
                        data-password-min-character-sets="<?php echo $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
                        data-validate="{required:true, 'validate-customer-password':true}"
                        autocomplete="off">
-                <div id="password-strength-meter-container" data-role="password-strength-meter" >
-                    <div id="password-strength-meter" class="password-strength-meter">
-                        <?php /* @escapeNotVerified */ echo __('Password Strength'); ?>:
-                        <span id="password-strength-meter-label" data-role="password-strength-meter-label" >
-                            <?php /* @escapeNotVerified */ echo __('No Password'); ?>
-                        </span>
-                    </div>
-                </div>
             </div>
 
         </div>
