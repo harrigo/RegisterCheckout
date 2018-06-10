@@ -12,7 +12,7 @@ define(
 		Component,
 		_,
 		stepNavigator,
-		customer
+   customer
 	) {
 		'use strict';
 		/**
@@ -27,44 +27,42 @@ define(
 			defaults: {
 				template: 'Harrigo_RegisterCheckout/registerstep'
 			},
-			isCustomerLoggedIn: customer.isLoggedIn,
+       isCustomerLoggedIn: customer.isLoggedIn,
 			//add here your logic to display step,
-			isVisible: ko.observable(true),
+			isVisible: ko.observable(!customer.isLoggedIn()),
  
 			/**
 			*
 			* @returns {*}
 			*/
 			initialize: function () {
-				window.loggedin = this.isCustomerLoggedIn();
-				this._super();
+        window.loggedin = this.isCustomerLoggedIn();
+		this._super();
+		if (!customer.isLoggedIn()) {
+				
 				// register your step
-				
-
-		
-					stepNavigator.registerStep(
-						//step code will be used as step content id in the component template
-						'interestedin',
-						//step alias
-						null,
-						//step title value
-						'Create Account',
-						//observable property with logic when display step or hide step
-						this.isVisible,
-						 
-						_.bind(this.navigate, this),
-	   
-						/**
-						* sort order value
-						* 'sort order value' < 10: step displays before shipping step;
-						* 10 < 'sort order value' < 20 : step displays between shipping and payment step
-						* 'sort order value' > 20 : step displays after payment step
-						*/
-						5
-					);
-				
-
-
+        
+  				stepNavigator.registerStep(
+  					//step code will be used as step content id in the component template
+  					'interestedin',
+  					//step alias
+  					null,
+  					//step title value
+  					'Create Account',
+  					//observable property with logic when display step or hide step
+  					this.isVisible,
+  					 
+  					_.bind(this.navigate, this),
+   
+  					/**
+  					* sort order value
+  					* 'sort order value' < 10: step displays before shipping step;
+  					* 10 < 'sort order value' < 20 : step displays between shipping and payment step
+  					* 'sort order value' > 20 : step displays after payment step
+  					*/
+  					5
+  				);
+		}
 				return this;
 			},
  
@@ -74,6 +72,7 @@ define(
 			* for switching to your custom step 
 			*/
 			navigate: function () {
+
 			},
  
 			/**

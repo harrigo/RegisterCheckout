@@ -17,7 +17,7 @@
 <?php echo $block->getChildHtml('form_fields_before')?>
 <?php /* Extensions placeholder */ ?>
 <?php echo $block->getChildHtml('customer.form.register.extra')?>
-<form class="form create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+<form class="form create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>?checkout=yes" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <fieldset class="fieldset create info">
         <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend><br>
 		<input type="hidden" name="checkout" value="true">
@@ -168,7 +168,7 @@
     </fieldset>
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></button>
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Continue') ?></span></button>
         </div>
         <div class="secondary">
             <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Back') ?></span></a>
