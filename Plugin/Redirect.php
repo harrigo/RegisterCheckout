@@ -27,7 +27,7 @@ class Redirect
         //need to check out if registration was from checkouit
         /** @var \Magento\Framework\Controller\Result\Redirect $result */
 
-		if ($_POST['checkout'] == 'true') {
+		if (isset($_POST['checkout']) && $_POST['checkout'] == 'true') {
 			$result = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 			$result->setUrl($this->url->getUrl('checkout'));
 			return $result;
